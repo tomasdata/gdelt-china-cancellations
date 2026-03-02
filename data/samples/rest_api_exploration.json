@@ -1,0 +1,20 @@
+{
+  "artlist_china_investment": {
+    "error": "HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=China+investment+cancelled&mode=artlist&maxrecords=5&format=json (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.gdeltproject.org', port=443) at 0x106a5ef90>, 'Connection to api.gdeltproject.org timed out. (connect timeout=30)'))"
+  },
+  "timelinevol": {
+    "error": "HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=China+BRI+cancelled&mode=timelinevol&maxrecords=0&format=json (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.gdeltproject.org', port=443) at 0x106b1a710>, 'Connection to api.gdeltproject.org timed out. (connect timeout=30)'))"
+  },
+  "timelinetone": {
+    "error": "HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/doc/doc?query=China+infrastructure+project+cancelled&mode=timelinetone&maxrecords=0&format=json (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.gdeltproject.org', port=443) at 0x106b1afd0>, 'Connection to api.gdeltproject.org timed out. (connect timeout=30)'))"
+  },
+  "tren_santiago": {
+    "error": "HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=30)"
+  },
+  "huawei_chile": {
+    "error": "HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Read timed out. (read timeout=30)"
+  },
+  "geo_china": {
+    "error": "HTTPSConnectionPool(host='api.gdeltproject.org', port=443): Max retries exceeded with url: /api/v2/geo/geo?query=China+investment+cancel&format=geojson (Caused by ConnectTimeoutError(<HTTPSConnection(host='api.gdeltproject.org', port=443) at 0x106b1b750>, 'Connection to api.gdeltproject.org timed out. (connect timeout=30)'))"
+  }
+}

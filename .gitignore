@@ -1,0 +1,43 @@
+# Entorno virtual Python
+gdelt_env/
+venv/
+env/
+.venv/
+
+# Datos pesados (CSVs y Parquets — demasiado grandes para GitHub)
+data/samples/**/*.csv
+data/samples/**/*.parquet
+data/samples/**/*.json
+
+# Excepciones: mantener los archivos de análisis dentro de data/
+!data/samples/**/ANALYSIS.md
+!data/samples/**/recall_analysis.md
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+
+# Credenciales y configuración local
+*.json
+!rest_api_exploration.json
+.env
+credentials/
+service_account*.json
+gcloud/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Temporales
+*.tmp
+*.bak

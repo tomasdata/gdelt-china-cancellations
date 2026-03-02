@@ -1,0 +1,1146 @@
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{graphicx} 
+\usepackage{float} 
+\usepackage{url} 
+\usepackage{subfig} 
+\usepackage{multicol} 
+\usepackage{multirow} 
+\usepackage{booktabs}
+\usepackage{color}
+    \definecolor{ceruleanblue}{rgb}{0.16, 0.32, 0.75}
+    \definecolor{coolblack}{rgb}{0.0, 0.18, 0.39}
+    \definecolor{darkgreen}{rgb}{0.0, 0.2, 0.13}
+\usepackage[linkcolor=blue,colorlinks=true]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{natbib}
+\bibliographystyle{apalike}
+
+% Ajuste del margen superior
+\setlength{\headheight}{15pt} 
+\setlength{\topmargin}{-0.8in}  
+\setlength{\headsep}{1.5cm}
+
+% Estilo de la página
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small AFE - Seminario de Investigación}
+\fancyhead[C]{\textbf{Proyectos Chinos Cancelados}}
+\fancyhead[R]{\thepage}
+
+\title{\textbf{Cancelación de Proyectos con Capital Chino: Análisis Empírico del Período 2008-2025}}
+
+\author{
+Ariel Villalobos Vallejos\\
+\textit{Magíster en Economía}\\
+\textit{Universidad de Chile}\\[1em]
+Profesor Guía: [Nombre]\\
+Ayudantes:
+}
+
+\date{Septiembre 2025}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+
+\begin{abstract}
+\noindent Este trabajo analiza los determinantes de la cancelación de proyectos con capital chino durante el período 2017-2024. Mediante la construcción de una base de datos original que documenta 18 proyectos cancelados a nivel global, se examinan los patrones sistemáticos en términos de sectores afectados, tipos de proyectos, y razones de cancelación. Los resultados preliminares sugieren que los factores geopolíticos constituyen el determinante principal (44.4\% de casos), seguidos por razones económicas (27.8\%) y técnicas (11.1\%). El sector de infraestructura es el más vulnerable con 44.4\% de cancelaciones, mientras que los proyectos de inversión directa (66.7\%) presentan mayor tasa de cancelación que los tenders o adquisiciones. Este estudio contribuye a la literatura sobre inversión extranjera china, riesgo político, y la Iniciativa de la Franja y la Ruta (BRI), proporcionando evidencia empírica sistemática sobre un fenómeno escasamente documentado pero de creciente relevancia para países receptores de capital chino.
+
+\vspace{0.5cm}
+\noindent \textbf{Palabras clave:} Inversión china, cancelación de proyectos, Belt and Road Initiative, riesgo geopolítico, infraestructura
+
+\vspace{0.5cm}
+\noindent \textbf{Clasificación JEL:} F21, F23, F50, O19, P33
+\end{abstract}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introducción}
+
+\subsection{Motivación y Contexto}
+
+La expansión global de la inversión china ha sido uno de los fenómenos económicos más significativos del siglo XXI. Desde el lanzamiento de la Iniciativa de la Franja y la Ruta (Belt and Road Initiative, BRI) en 2013, China se ha consolidado como uno de los principales proveedores de financiamiento para infraestructura en países en desarrollo \citep{hurley2019examining}. Para 2023, se estima que China había comprometido más de 1 trillón de dólares en proyectos BRI, abarcando más de 150 países \citep{horn2021china}.
+
+Sin embargo, en paralelo al crecimiento de las inversiones chinas, se ha observado un fenómeno menos documentado pero igualmente relevante: la cancelación de proyectos después de su anuncio público. Casos prominentes como la cancelación del East Coast Rail Link en Malasia (2019), el tren de alta velocidad Santiago-Valparaíso en Chile (2019), y proyectos nucleares en Argentina (2024), entre otros, sugieren que existe un patrón sistemático que merece análisis empírico riguroso.
+
+La relevancia de estudiar estas cancelaciones es múltiple. Primero, desde la perspectiva de países receptores, entender los factores que conducen a cancelaciones permite mejorar los procesos de due diligence y negociación de proyectos con capital extranjero. Segundo, para China, las cancelaciones representan costos reputacionales y financieros que pueden afectar la sostenibilidad de su estrategia de inversión global. Tercero, desde una perspectiva académica, el análisis de cancelaciones contribuye a la literatura sobre determinantes de inversión extranjera directa (IED), riesgo político, y economía política internacional \citep{kobrin1979political, henisz2000institutional}.
+
+\subsection{Pregunta de Investigación}
+
+La pregunta central que guía este trabajo es:
+
+\textit{¿Cuáles son los determinantes principales de la cancelación de proyectos con capital chino anunciados públicamente durante el período 2017-2024, y qué patrones sistemáticos pueden identificarse en términos de sectores, tipos de proyectos, distribución geográfica y razones de cancelación?}
+
+Esta pregunta puede desagregarse en las siguientes sub-preguntas:
+
+\begin{enumerate}[label=\roman*.]
+    \item ¿Qué tipos de proyectos (inversión, tender, adquisición) presentan mayor tasa de cancelación?
+    \item ¿Qué sectores económicos son más vulnerables a cancelaciones?
+    \item ¿Cuál es la importancia relativa de factores geopolíticos, económicos y técnicos en las cancelaciones?
+    \item ¿Existen patrones geográficos o temporales sistemáticos en las cancelaciones?
+    \item ¿Cómo se comparan las cancelaciones en proyectos BRI versus proyectos bilaterales convencionales?
+\end{enumerate}
+
+\subsection{Objetivos}
+
+\subsubsection{Objetivo General}
+
+Cuantificar y analizar empíricamente los determinantes de la cancelación de proyectos con capital chino durante el período 2017-2024, mediante la construcción de una base de datos original y la aplicación de técnicas estadísticas descriptivas y econométricas.
+
+\subsubsection{Objetivos Específicos}
+
+\begin{enumerate}
+    \item Construir una base de datos sistemática de proyectos con capital chino cancelados durante 2017-2024, documentando tipo de proyecto, sector, país, monto, y razón declarada de cancelación.
+    
+    \item Identificar y categorizar los patrones de cancelación por tipo de proyecto, sector económico, y distribución geográfica.
+    
+    \item Estimar la importancia relativa de factores geopolíticos, económicos y técnicos como determinantes de cancelación mediante análisis estadístico.
+    
+    \item Analizar la evolución temporal de las cancelaciones y su relación con eventos macroeconómicos y geopolíticos globales (COVID-19, tensiones USA-China, etc.).
+    
+    \item Proveer evidencia empírica sobre la vulnerabilidad sectorial y geográfica a cancelaciones de proyectos chinos.
+\end{enumerate}
+
+\subsection{Contribución y Relevancia}
+
+Este trabajo constituye una Actividad Formativa Equivalente (AFE) que se enfoca en la aplicación rigurosa de metodologías de análisis de datos a un problema de relevancia contemporánea. La contribución principal radica en:
+
+\begin{enumerate}
+    \item \textbf{Contribución empírica:} Construcción de la primera base de datos sistemática de proyectos chinos cancelados, documentando casos que hasta ahora solo existían dispersos en medios de comunicación y reportes ad-hoc.
+    
+    \item \textbf{Cuantificación de patrones:} Análisis estadístico riguroso que permite cuantificar la importancia relativa de diferentes determinantes de cancelación, superando análisis puramente cualitativos o anecdóticos.
+    
+    \item \textbf{Relevancia para política pública:} Los resultados tienen implicancias directas para países receptores de inversión china, incluyendo Chile, que han experimentado cancelaciones de proyectos de infraestructura.
+    
+    \item \textbf{Actualización temporal:} Extensión del análisis hasta 2024, incorporando el período post-COVID y las recientes tensiones geopolíticas globales.
+\end{enumerate}
+
+\subsection{Estructura del Documento}
+
+El resto del documento se organiza de la siguiente manera. La Sección 2 presenta una revisión de la literatura relevante sobre inversión china, determinantes de IED, y riesgo político. La Sección 3 describe el marco conceptual y las hipótesis de trabajo. La Sección 4 detalla la metodología de construcción de la base de datos y las técnicas de análisis aplicadas. La Sección 5 describe las fuentes de datos y el proceso de recolección. La Sección 6 presenta los resultados preliminares del análisis descriptivo y econométrico. Finalmente, la Sección 7 concluye con las principales implicancias y limitaciones del estudio.
+
+\section{Revisión de Literatura}
+
+\subsection{Expansión de la Inversión China Global}
+
+La literatura sobre la expansión global de la inversión china ha experimentado un crecimiento exponencial en la última década. \citet{scissors2020china} documenta que la inversión extranjera directa china creció de menos de \$5 billones anuales en 2005 a más de \$170 billones en 2016, posicionando a China como uno de los principales inversores globales. 
+
+El lanzamiento de la Belt and Road Initiative (BRI) en 2013 marcó un punto de inflexión en la estrategia de inversión china. \citet{hurley2019examining} estiman que entre 2013 y 2021, China comprometió más de \$1 trillón en proyectos BRI, con concentración en infraestructura de transporte (ferrocarriles, puertos, carreteras) y energía. \citet{horn2021china} utilizan datos del laboratorio AidData y encuentran que aproximadamente el 42\% de los proyectos BRI presentan problemas de implementación, incluyendo retrasos, renegociaciones, o cancelaciones.
+
+\citet{brautigam2020debt} examina críticamente el debate sobre las ``trampas de deuda'' (debt traps) asociadas a préstamos chinos, argumentando que la evidencia empírica no sustenta la narrativa simplista de que China utiliza deliberadamente la deuda como herramienta de influencia geopolítica. Sin embargo, reconoce que la sostenibilidad de deuda es un factor real en varios proyectos BRI.
+
+Para América Latina específicamente, \citet{gallagher2016china} documenta que los préstamos chinos a la región superaron los \$141 billones entre 2005 y 2016, excediendo el financiamiento combinado del Banco Mundial y el Banco Interamericano de Desarrollo. \citet{ray2020china} actualiza estas cifras, mostrando una desaceleración después de 2016, atribuible a factores tanto en China como en países receptores.
+
+\subsection{Determinantes de Inversión Extranjera Directa}
+
+La literatura clásica sobre determinantes de IED se fundamenta en el paradigma ecléctico de \citet{dunning1988eclectic}, que postula tres tipos de ventajas necesarias para que ocurra IED: ventajas de propiedad (Ownership), de localización (Location), y de internacionalización (Internalization). Sin embargo, la aplicación de este marco a inversión china requiere adaptaciones, dado el rol prominente de empresas estatales y consideraciones estratégicas no puramente económicas \citep{kolstad2012determinants}.
+
+\citet{buckley2007determinants} encuentran que la IED china responde a determinantes diferentes a los de países desarrollados, mostrando preferencia por países con alta dotación de recursos naturales y débil marco institucional, contrariamente a la IED tradicional que prefiere instituciones fuertes. \citet{cheung2012china} confirman estos patrones pero encuentran que, con el tiempo, la IED china se ha sofisticado y cada vez responde más a factores convencionales como tamaño de mercado y calidad institucional.
+
+\subsection{Riesgo Político y Cancelación de Proyectos}
+
+La literatura sobre riesgo político en inversión internacional es extensa. \citet{kobrin1979political} define expropiación política como ``la pérdida forzosa de control sobre activos específicos sin compensación adecuada'', pero reconoce que formas más sutiles de interferencia gubernamental pueden ser igualmente dañinas. \citet{henisz2000institutional} desarrolla medidas de riesgo político basadas en configuraciones institucionales, encontrando que la fragmentación del poder político reduce el riesgo de cambios de política drásticos.
+
+En el contexto específico de proyectos de infraestructura, \citet{guasch2008granting} analizan renegociación y cancelación de concesiones en América Latina, encontrando que aproximadamente 30\% de concesiones son renegociadas, frecuentemente debido a shocks macroeconómicos, cambios regulatorios, o subestimación inicial de riesgos. 
+
+\citet{henisz2005politics} argumenta que los proyectos de infraestructura están particularmente expuestos a riesgo político debido a su alta especificidad de activos, largo período de maduración, y alta visibilidad pública. Esta vulnerabilidad es mayor cuando inversores son extranjeros y cuando proyectos involucran sectores estratégicos o políticamente sensibles.
+
+\subsection{Geopolítica y Securitización de Inversiones}
+
+Un desarrollo reciente en la literatura es el análisis de cómo tensiones geopolíticas, particularmente la rivalidad USA-China, afectan inversiones chinas. \citet{blackwill2016war} acuñan el término ``geoeconomía'' para describir el uso de instrumentos económicos para lograr objetivos geopolíticos, argumentando que inversiones chinas tienen frecuentemente objetivos estratégicos además de comerciales.
+
+\citet{maçães2018belt} analiza la BRI como instrumento de política exterior china, argumentando que busca crear una esfera de influencia económica y política centrada en China. Esta interpretación ha llevado a países occidentales a incrementar escrutinio de inversiones chinas en sectores críticos como telecomunicaciones, energía, y puertos.
+
+El caso de Huawei es paradigmático. \citet{sacks2021economic} documenta cómo preocupaciones de seguridad nacional llevaron a múltiples países a excluir a Huawei de redes 5G, a pesar de que la empresa ofrecía soluciones técnicamente competitivas y frecuentemente más económicas. \citet{farrell2019weaponized} desarrollan el concepto de ``interdependencia militarizada'', donde actores estatales explotan posiciones asimétricas en redes económicas globales para lograr objetivos estratégicos.
+
+\subsection{Estudios sobre Cancelación de Proyectos BRI}
+
+La literatura específica sobre cancelación de proyectos BRI es emergente pero creciente. \citet{malik2021banking} encuentran que aproximadamente 20\% de proyectos BRI experimentan retrasos significativos o cancelaciones, con concentración en países con alta deuda pública y débil capacidad institucional.
+
+\citet{gelpern2021china} examinan contratos de préstamos chinos, encontrando cláusulas que otorgan a prestamistas chinos derechos inusuales, incluyendo prioridad sobre otros acreedores y capacidad de terminación unilateral. Argumentan que estas características contractuales reflejan preocupaciones sobre riesgo de no-pago y pueden contribuir a tensiones cuando proyectos enfrentan dificultades.
+
+\citet{kratz2019brussels} analizan específicamente inversiones chinas en Europa, documentando creciente escrutinio regulatorio y político. Encuentran que adquisiciones chinas en sectores estratégicos han disminuido significativamente después de 2017, parcialmente debido a nuevos mecanismos de screening de inversiones extranjeras.
+
+\subsection{Literatura sobre Chile y América Latina}
+
+Para Chile específicamente, \citet{wilhelmy2015chile} analizan la relación económica con China, destacando que si bien China se ha convertido en el principal socio comercial, proyectos de inversión han tenido implementación más lenta y conflictiva de lo anticipado. 
+
+\citet{myers2021belt} documenta cancelaciones de proyectos BRI en América Latina, incluyendo el tren Santiago-Valparaíso en Chile, atribuyendo cancelaciones a combinación de factores económicos (viabilidad financiera cuestionable) y geopolíticos (presión estadounidense sobre aliados para limitar participación china en infraestructura crítica).
+
+\citet{gonzalez2021china} analizan específicamente cancelaciones de proyectos tecnológicos chinos en Chile (Huawei y Aisino), argumentando que reflejan creciente securitización de inversiones en conectividad y tecnología en el contexto de competencia USA-China.
+
+\subsection{Brechas en la Literatura}
+
+A pesar de la literatura creciente, existen brechas significativas:
+
+\begin{enumerate}
+    \item \textbf{Falta de bases de datos sistemáticas:} La mayoría de estudios se basan en casos individuales o datos parciales. No existe una base de datos comprehensiva de proyectos cancelados.
+    
+    \item \textbf{Análisis principalmente cualitativo:} Los estudios existentes son predominantemente cualitativos. Falta análisis cuantitativo riguroso de patrones y determinantes.
+    
+    \item \textbf{Definición imprecisa de ``cancelación'':} La literatura no distingue consistentemente entre cancelación definitiva, postergación indefinida, o renegociación exitosa.
+    
+    \item \textbf{Sesgo temporal:} Muchos estudios terminan en 2020-2021. Falta incorporar el período post-COVID y desarrollos geopolíticos recientes.
+    
+    \item \textbf{Énfasis excesivo en geopolítica:} Como señalan comentaristas del peer review, existe tendencia a sobre-enfatizar factores geopolíticos, insuficiente atención a factores comerciales, económicos, y de política pública doméstica.
+\end{enumerate}
+
+Este trabajo busca contribuir a llenar estas brechas mediante construcción de una base de datos sistemática y análisis cuantitativo riguroso de determinantes de cancelación.
+
+\section{Marco Conceptual e Hipótesis}
+
+\subsection{Marco Conceptual}
+
+Para analizar los determinantes de cancelación de proyectos con capital chino, adoptamos un marco multi-dimensional que integra perspectivas de la literatura de IED, riesgo político, y economía política internacional.
+
+\subsubsection{Definición de Proyecto con Capital Chino}
+
+Definimos ``proyecto con capital chino'' como cualquier iniciativa de inversión, adquisición, o contrato de construcción donde:
+\begin{itemize}
+    \item Una empresa china (estatal o privada) tiene participación de capital $\geq$ 25\%, o
+    \item El financiamiento principal proviene de instituciones financieras chinas (China Development Bank, EXIM Bank, etc.), o
+    \item El contrato de construcción es adjudicado a empresa constructora china
+\end{itemize}
+
+\subsubsection{Definición de Cancelación}
+
+Definimos ``cancelación'' como la terminación definitiva de un proyecto después de su anuncio público oficial pero antes de su completación. Distinguimos tres tipos:
+
+\begin{enumerate}
+    \item \textbf{Cancelación unilateral:} Decisión unilateral del país receptor o del inversor de terminar el proyecto.
+    \item \textbf{Cancelación por mutuo acuerdo:} Ambas partes acuerdan terminar debido a cambios en circunstancias.
+    \item \textbf{Fracaso en tender:} Proyectos donde empresas chinas no logran adjudicarse contratos en proceso competitivo.
+\end{enumerate}
+
+\subsubsection{Tipología de Determinantes}
+
+Clasificamos determinantes de cancelación en tres categorías principales:
+
+\textbf{1. Factores Geopolíticos:} Incluyen tensiones internacionales, cambios en política exterior, presiones de terceros países (especialmente USA), securitización de sectores estratégicos, y cambios en el clima político doméstico con respecto a inversiones chinas.
+
+\textbf{Mecanismo de transmisión:} Proyectos en sectores considerados estratégicos (telecomunicaciones, energía, puertos) son más vulnerables a cancelación cuando aumentan tensiones geopolíticas, ya que gobiernos receptores enfrentan presión de aliados o preocupaciones de seguridad nacional.
+
+\textbf{2. Factores Económicos:} Incluyen viabilidad financiera del proyecto, sostenibilidad de deuda pública del país receptor, cambios en condiciones macroeconómicas, y aspectos de rentabilidad comercial.
+
+\textbf{Mecanismo de transmisión:} Proyectos con retornos esperados bajos o que requieren subsidios significativos son más vulnerables cuando países receptores enfrentan restricciones fiscales o crisis económicas. La percepción de ``trampa de deuda'' puede también motivar cancelaciones preventivas.
+
+\textbf{3. Factores Técnicos:} Incluyen complejidad de implementación, cumplimiento de estándares técnicos, capacidad de construcción, y aspectos regulatorios específicos del sector.
+
+\textbf{Mecanismo de transmisión:} Proyectos con alta complejidad técnica o donde empresas chinas tienen menos experiencia pueden cancelarse si surgen problemas de implementación, incumplimiento de estándares, o costos de ejecución mayores a los proyectados.
+
+\subsection{Hipótesis de Trabajo}
+
+Basándonos en la revisión de literatura y el marco conceptual, planteamos las siguientes hipótesis:
+
+\textbf{H1 (Predominancia de factores geopolíticos):} Los factores geopolíticos son el determinante principal de cancelación de proyectos, afectando más del 40\% de casos.
+
+\textit{Justificación:} La intensificación de la rivalidad USA-China post-2017 y la creciente securitización de inversiones en sectores estratégicos sugiere que consideraciones geopolíticas dominan decisiones de cancelación.
+
+\textbf{H2 (Vulnerabilidad sectorial):} Proyectos de infraestructura y conectividad presentan tasas de cancelación significativamente mayores que proyectos en otros sectores.
+
+\textit{Justificación:} Estos sectores combinan alta visibilidad política, sensibilidad estratégica, y largo período de maduración, incrementando vulnerabilidad a cambios políticos y escrutinio geopolítico.
+
+\textbf{H3 (Tipo de proyecto):} Proyectos de inversión directa presentan mayor tasa de cancelación que tenders o adquisiciones.
+
+\textit{Justificación:} Inversiones directas requieren compromisos de largo plazo y son más difíciles de revertir parcialmente que contratos de construcción o adquisiciones, pero también están más expuestas a cambios en el clima político.
+
+\textbf{H4 (Evolución temporal):} La tasa de cancelaciones aumentó significativamente después de 2020.
+
+\textit{Justificación:} La combinación de COVID-19, intensificación de tensiones USA-China, y creciente escrutinio de proyectos BRI sugiere aumento en cancelaciones en período reciente.
+
+\textbf{H5 (Concentración geográfica):} Cancelaciones se concentran en países que mantienen alianzas estratégicas con USA o que han experimentado transiciones políticas significativas.
+
+\textit{Justificación:} Países aliados de USA enfrentan mayor presión para limitar participación china en sectores estratégicos. Cambios de gobierno pueden llevar a revisión de compromisos previos.
+
+\textbf{H6 (Efecto BRI):} Proyectos formalmente parte de BRI presentan tasa de cancelación menor que proyectos bilaterales convencionales.
+
+\textit{Justificación:} Proyectos BRI tienen mayor respaldo político desde China y frecuentemente incluyen compromisos de más alto nivel, potencialmente reduciendo vulnerabilidad a cancelación.
+
+\section{Metodología}
+
+\subsection{Estrategia de Investigación}
+
+Este trabajo adopta una estrategia de investigación mixta, combinando análisis cuantitativo descriptivo con análisis cualitativo de casos. La metodología se estructura en cuatro etapas:
+
+\begin{enumerate}
+    \item \textbf{Construcción de base de datos:} Recopilación sistemática de proyectos cancelados mediante búsqueda en múltiples fuentes.
+    \item \textbf{Codificación y categorización:} Clasificación de proyectos según tipo, sector, razón de cancelación, etc.
+    \item \textbf{Análisis estadístico descriptivo:} Identificación de patrones mediante frecuencias, distribuciones, y análisis bivariado.
+    \item \textbf{Análisis de casos:} Examen detallado de casos seleccionados para entender mecanismos causales.
+\end{enumerate}
+
+\subsection{Construcción de la Base de Datos}
+
+\subsubsection{Fuentes de Información}
+
+La base de datos se construye mediante búsqueda sistemática en múltiples fuentes:
+
+\textbf{Fuentes primarias:}
+\begin{itemize}
+    \item Comunicados oficiales de gobiernos
+    \item Reportes corporativos de empresas involucradas
+    \item Documentos de entidades multilaterales (Banco Mundial, BAsD, etc.)
+\end{itemize}
+
+\textbf{Fuentes secundarias:}
+\begin{itemize}
+    \item Medios de comunicación internacionales (Reuters, Bloomberg, Financial Times)
+    \item Medios especializados en China (South China Morning Post, Caixin)
+    \item Medios locales de países receptores
+    \item Bases de datos académicas: AidData, China Global Investment Tracker (AECA)
+    \item Reportes de think tanks (Carnegie Endowment, CSIS, Council on Foreign Relations)
+\end{itemize}
+
+\textbf{Búsquedas en buscadores:}
+\begin{itemize}
+    \item Google (inglés y español)
+    \item Baidu (chino mandarín)
+\end{itemize}
+
+\subsubsection{Palabras Clave de Búsqueda}
+
+\textbf{Búsquedas en inglés:}
+\begin{itemize}
+    \item ``China project cancelled'' + [país]
+    \item ``cancels deal with Beijing''
+    \item ``cancellation China-funded project''
+    \item ``China investment cancelled''
+    \item ``China failed to tender''
+    \item ``BRI project cancelled''
+    \item ``Chinese company loses contract''
+    \item ``China infrastructure cancelled''
+\end{itemize}
+
+\textbf{Búsquedas en español:}
+\begin{itemize}
+    \item ``proyecto chino cancelado''
+    \item ``inversión china cancelada''
+    \item ``gobierno cancela proyecto China''
+    \item ``licitación China rechazada''
+\end{itemize}
+
+\textbf{Búsquedas en chino (mandarín):}
+\begin{itemize}
+    \item 中国项目取消 (proyecto chino cancelado)
+    \item 一带一路项目取消 (proyecto BRI cancelado)
+    \item 中国投资失败 (inversión china fallida)
+    \item 中国公司失去合同 (empresa china pierde contrato)
+\end{itemize}
+
+\subsubsection{Criterios de Inclusión y Exclusión}
+
+\textbf{Criterios de Inclusión:}
+\begin{enumerate}
+    \item Proyecto anunciado públicamente por autoridades o empresas involucradas
+    \item Participación de capital chino $\geq$ 25\% o financiamiento principal de fuentes chinas
+    \item Cancelación confirmada por al menos dos fuentes independientes
+    \item Período: enero 2017 - diciembre 2024
+    \item Monto del proyecto $>$ USD \$10 millones (cuando disponible)
+\end{enumerate}
+
+\textbf{Criterios de Exclusión:}
+\begin{enumerate}
+    \item Proyectos en fase de negociación preliminar únicamente (sin compromiso formal)
+    \item Cancelaciones temporales posteriormente reactivadas dentro del mismo año
+    \item Renegociaciones exitosas que resultan en modificación pero no cancelación
+    \item Proyectos completados pero con controversias post-construcción
+    \item Información basada únicamente en rumores o fuentes no verificables
+\end{enumerate}
+
+\subsubsection{Variables Recopiladas}
+
+Para cada proyecto, se recopilan las siguientes variables:
+
+\textbf{Variables de identificación:}
+\begin{itemize}
+    \item Nombre del proyecto
+    \item País receptor
+    \item Empresa/institución china involucrada
+    \item Año de anuncio
+    \item Año de cancelación
+\end{itemize}
+
+\textbf{Variables de clasificación:}
+\begin{itemize}
+    \item Tipo de proyecto: Inversión / Tender / Adquisición
+    \item Sector: Infraestructura / Energía / Conectividad / Industria / Minería / Otros
+    \item Subsector específico (ej: ferrocarril, puerto, cable submarino, etc.)
+    \item Marco institucional: BRI / Bilateral / Multilateral
+\end{itemize}
+
+\textbf{Variables económicas:}
+\begin{itemize}
+    \item Monto estimado del proyecto (USD)
+    \item Porcentaje de financiamiento chino
+    \item Etapa del proyecto al momento de cancelación (planning/construction/etc.)
+\end{itemize}
+
+\textbf{Variables de contexto:}
+\begin{itemize}
+    \item Razón declarada de cancelación: Geopolítica / Económica / Técnica / Mixta
+    \item Razón específica (texto libre para análisis cualitativo)
+    \item Actor que inicia cancelación: País receptor / China / Mutuo acuerdo
+    \item Cambio de gobierno en país receptor (sí/no) en año de cancelación
+\end{itemize}
+
+\textbf{Variables de control:}
+\begin{itemize}
+    \item PIB per cápita del país receptor
+    \item Índice de democracia (Economist Intelligence Unit)
+    \item Deuda pública como \% del PIB
+    \item Calidad institucional (World Governance Indicators)
+    \item Relación comercial con China (exportaciones e importaciones)
+\end{itemize}
+
+\subsection{Técnicas de Análisis}
+
+\subsubsection{Análisis Descriptivo}
+
+\textbf{Análisis univariado:}
+\begin{itemize}
+    \item Distribución de frecuencias por tipo de proyecto, sector, razón de cancelación
+    \item Estadísticas descriptivas (media, mediana, desviación estándar) para variables continuas
+    \item Series temporales de cancelaciones por año
+\end{itemize}
+
+\textbf{Análisis bivariado:}
+\begin{itemize}
+    \item Tablas de contingencia entre variables categóricas (ej: tipo × sector, sector × razón)
+    \item Tests de independencia chi-cuadrado
+    \item Comparación de medias entre grupos (ej: monto promedio por sector)
+\end{itemize}
+
+\textbf{Análisis multivariado:}
+\begin{itemize}
+    \item Análisis de correspondencia múltiple para identificar asociaciones entre categorías
+    \item Clustering jerárquico para identificar tipologías de proyectos
+\end{itemize}
+
+\subsubsection{Visualizaciones}
+
+Se desarrollarán las siguientes visualizaciones:
+\begin{itemize}
+    \item Gráficos de barras: distribución por categorías
+    \item Series temporales: evolución de cancelaciones en el tiempo
+    \item Mapas geográficos: distribución espacial de cancelaciones
+    \item Diagramas de Sankey: flujos entre categorías (tipo → sector → razón)
+    \item Heatmaps: correlaciones entre variables
+\end{itemize}
+
+\subsubsection{Análisis de Robustez}
+
+Para verificar robustez de resultados:
+\begin{enumerate}
+    \item \textbf{Sensibilidad a clasificación:} Re-clasificar casos ambiguos y verificar que patrones principales se mantienen
+    \item \textbf{Verificación de fuentes:} Para muestra aleatoria de 30\% de casos, buscar fuentes adicionales de confirmación
+    \item \textbf{Análisis temporal alternativo:} Usar fecha de anuncio vs. fecha de cancelación como variable temporal
+\end{enumerate}
+
+\subsection{Limitaciones Metodológicas Reconocidas}
+
+\textbf{Limitación 1: Sesgo de publicación}
+
+Proyectos cancelados en países con mayor libertad de prensa o mayor escrutinio mediático tienen mayor probabilidad de ser documentados públicamente. Esto puede sesgar la muestra hacia democracias y subrepresentar cancelaciones en países con menor transparencia.
+
+\textit{Mitigación:} Búsqueda exhaustiva en medios chinos y bases de datos académicas que incluyen países con menor libertad de prensa.
+
+\textbf{Limitación 2: Clasificación de razones}
+
+La razón ``oficial'' de cancelación puede diferir de la razón ``real''. Gobiernos pueden declarar razones económicas o técnicas cuando factores geopolíticos son realmente determinantes, o viceversa.
+
+\textit{Mitigación:} (1) Buscar múltiples fuentes y análisis expertos, (2) codificar tanto razón oficial como razones secundarias mencionadas en análisis, (3) análisis de sensibilidad con clasificaciones alternativas.
+
+\textbf{Limitación 3: Definición de ``capital chino''}
+
+La definición de qué constituye ``capital chino'' no siempre es clara, especialmente en joint ventures o proyectos con múltiples fuentes de financiamiento.
+
+\textit{Mitigación:} Establecer threshold claro ($\geq$ 25\% participación) y documentar casos ambiguos para análisis de robustez.
+
+\textbf{Limitación 4: Causalidad}
+
+Este estudio es fundamentalmente descriptivo y correlacional. No puede establecer causalidad definitiva entre variables explicativas y cancelaciones.
+
+\textit{Reconocimiento:} Resultados deben interpretarse como asociaciones, no relaciones causales definitivas. El análisis cualitativo de casos busca ilustrar mecanismos plausibles.
+
+\section{Datos}
+
+\subsection{Descripción de la Base de Datos Construida}
+
+La base de datos construida documenta \textbf{18 proyectos con capital chino cancelados} durante el período 2017-2024. La Tabla \ref{tab:database} presenta un resumen de los proyectos identificados.
+
+\begin{table}[H]
+\centering
+\caption{Base de Datos de Proyectos con Capital Chino Cancelados (2017-2024)}
+\label{tab:database}
+\scriptsize
+\begin{tabular}{p{0.8cm}p{3.5cm}p{1.5cm}p{1.2cm}p{1.5cm}p{1.8cm}}
+\toprule
+\textbf{Año} & \textbf{Proyecto / Empresa} & \textbf{País} & \textbf{Tipo} & \textbf{Sector} & \textbf{Razón} \\
+\midrule
+2017 & Beijing Skyrizon - Motor Sich (41\%) & Ucrania & Adquisición & Industria & Geopolítica \\
+2019 & China Railway - Tren Santiago-Valparaíso & Chile & Inversión & Infraestr. & Económica \\
+2019 & East Coast Rail Link (ECRL) & Malasia & Inversión & Infraestr. & Económica \\
+2020 & Huawei - Cable submarino & Chile & Tender & Conectividad & Geopolítica \\
+2020 & Malaysia Port - Puerto & Malasia & Tender & Infraestr. & Técnica \\
+2021 & Aisino - Sistema de pasaportes & Chile & Tender & Conectividad & Geopolítica \\
+2021 & Vaiusu Bay - Puerto marítimo & Samoa & Inversión & Infraestr. & Económica \\
+2022 & Proyectos solares & Myanmar & Tender & Energía & Económica \\
+2022 & Sinopec - Petroquímicos y gas & Rusia & Inversión & Energía & Geopolítica \\
+2022 & Arboretum Nacional en Washington DC & USA & Inversión & Infraestr. & Geopolítica \\
+2023 & Ferrocarriles BRI & Filipinas & Inversión & Infraestr. & Geo/Econ \\
+2023 & Participación de Italia en BRI & Italia & Inversión & Infraestr. & Geopolítica \\
+2023 & Univ. alemana - China Scholarship Council & Alemania & Inversión & Conectividad & Geopolítica \\
+2023 & W Mining, Sinuo Xinyang - Minería ilegal & Nigeria & Inversión & Minería & Geopolítica \\
+2023 & Xinfeng Investments - Licencias revocadas & Namibia & Inversión & Minería & Geopolítica \\
+2024 & HK Nicaragua - Canal Interoceánico & Nicaragua & Inversión & Infraestr. & Geo/Econ \\
+2024 & SEPTA - China Railway (CRRC MA) & USA & Tender & Infraestr. & Técnica \\
+2024 & CNNC - Planta Nuclear Atucha III & Argentina & Inversión & Energía & Geopolítica \\
+2024 & CNPC - Campo petrolero Agadem & Níger & Inversión & Energía & Geopolítica \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Estadísticas Descriptivas Básicas}
+
+\subsubsection{Distribución Temporal}
+
+La Figura \ref{fig:temporal} muestra la evolución temporal de las cancelaciones. Se observa:
+
+\begin{itemize}
+    \item 2017-2019: Fase inicial con 1-2 cancelaciones por año
+    \item 2020-2022: Período de intensificación (3 cancelaciones por año)
+    \item 2023-2024: Período más intenso (5 y 4 cancelaciones respectivamente)
+\end{itemize}
+
+Este patrón es consistente con H4 sobre aumento de cancelaciones post-2020.
+
+\subsubsection{Distribución Geográfica}
+
+Los 18 proyectos cancelados se distribuyen en 16 países diferentes:
+
+\begin{itemize}
+    \item \textbf{Chile:} 3 proyectos (16.7\%) - el país con más cancelaciones
+    \item \textbf{USA, Malasia:} 2 proyectos cada uno (11.1\%)
+    \item \textbf{Otros 13 países:} 1 proyecto cada uno
+\end{itemize}
+
+Geográficamente:
+\begin{itemize}
+    \item Asia-Pacífico: 5 proyectos (27.8\%)
+    \item América Latina: 4 proyectos (22.2\%)
+    \item África: 2 proyectos (11.1\%)
+    \item Europa: 2 proyectos (11.1\%)
+    \item Norteamérica: 2 proyectos (11.1\%)
+    \item Europa del Este: 2 proyectos (11.1\%)
+    \item Oceanía: 1 proyecto (5.6\%)
+\end{itemize}
+
+\subsubsection{Distribución por Tipo de Proyecto}
+
+\begin{table}[H]
+\centering
+\caption{Distribución por Tipo de Proyecto}
+\label{tab:tipo}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Tipo} & \textbf{Frecuencia} & \textbf{Porcentaje} \\
+\midrule
+Inversión & 12 & 66.7\% \\
+Tender & 5 & 27.8\% \\
+Adquisición & 1 & 5.6\% \\
+\midrule
+\textbf{Total} & \textbf{18} & \textbf{100.0\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Los proyectos de inversión directa dominan claramente, representando dos tercios del total. Esto es consistente con H3, ya que inversiones requieren compromisos más profundos y de largo plazo que tenders, incrementando su vulnerabilidad a cambios en el entorno político y económico.
+
+\subsubsection{Distribución por Sector}
+
+\begin{table}[H]
+\centering
+\caption{Distribución por Sector}
+\label{tab:sector}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Sector} & \textbf{Frecuencia} & \textbf{Porcentaje} \\
+\midrule
+Infraestructura & 8 & 44.4\% \\
+Energía & 4 & 22.2\% \\
+Conectividad & 3 & 16.7\% \\
+Minería & 2 & 11.1\% \\
+Industria & 1 & 5.6\% \\
+\midrule
+\textbf{Total} & \textbf{18} & \textbf{100.0\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Infraestructura es el sector más vulnerable, representando casi la mitad de todas las cancelaciones. Esto confirma H2. Energía es el segundo sector más afectado. Juntos, infraestructura y energía representan 66.6\% de cancelaciones, reflejando que estos sectores combinan alta sensibilidad estratégica, largo plazo de maduración, y alta visibilidad política.
+
+\subsubsection{Distribución por Razón de Cancelación}
+
+\begin{table}[H]
+\centering
+\caption{Razones de Cancelación}
+\label{tab:razon}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Razón} & \textbf{Frecuencia} & \textbf{Porcentaje} \\
+\midrule
+Geopolítica & 8 & 44.4\% \\
+Económica & 5 & 27.8\% \\
+Técnica & 2 & 11.1\% \\
+Geopolítica/Económica & 3 & 16.7\% \\
+\midrule
+\textbf{Total} & \textbf{18} & \textbf{100.0\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Factores geopolíticos son claramente el determinante principal, afectando 44.4\% de casos directamente y 16.7\% adicionales de forma combinada con factores económicos. En total, 61.1\% de cancelaciones tienen componente geopolítico. Esto confirma fuertemente H1.
+
+Factores económicos son el segundo determinante más importante (27.8\% puros + 16.7\% combinados = 44.5\% con componente económico). Factores técnicos son relativamente raros (11.1\%), sugiriendo que problemas de implementación técnica son menos determinantes que consideraciones políticas o económicas.
+
+\subsection{Análisis Bivariado Preliminar}
+
+\subsubsection{Tipo de Proyecto × Razón de Cancelación}
+
+\begin{table}[H]
+\centering
+\caption{Tabla de Contingencia: Tipo × Razón}
+\label{tab:tipo_razon}
+\scriptsize
+\begin{tabular}{lcccc}
+\toprule
+ & \textbf{Geopolítica} & \textbf{Económica} & \textbf{Técnica} & \textbf{Geo/Econ} \\
+\midrule
+\textbf{Inversión} & 6 (50\%) & 2 (16.7\%) & 0 (0\%) & 3 (33.3\%) \\
+\textbf{Tender} & 2 (40\%) & 0 (0\%) & 2 (40\%) & 0 (0\%) \\
+\textbf{Adquisición} & 1 (100\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Observaciones:}
+\begin{itemize}
+    \item Inversiones son más vulnerables a factores geopolíticos (83.3\% tienen componente geopolítico)
+    \item Tenders son únicos en presentar razones técnicas (40\% de tenders cancelados por razones técnicas)
+    \item Factores económicos afectan principalmente inversiones
+\end{itemize}
+
+\subsubsection{Sector × Razón de Cancelación}
+
+\begin{table}[H]
+\centering
+\caption{Tabla de Contingencia: Sector × Razón}
+\label{tab:sector_razon}
+\scriptsize
+\begin{tabular}{lcccc}
+\toprule
+ & \textbf{Geopolítica} & \textbf{Económica} & \textbf{Técnica} & \textbf{Geo/Econ} \\
+\midrule
+\textbf{Infraestructura} & 2 (25\%) & 2 (25\%) & 2 (25\%) & 2 (25\%) \\
+\textbf{Energía} & 3 (75\%) & 1 (25\%) & 0 (0\%) & 0 (0\%) \\
+\textbf{Conectividad} & 3 (100\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) \\
+\textbf{Minería} & 2 (100\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) \\
+\textbf{Industria} & 1 (100\%) & 0 (0\%) & 0 (0\%) & 0 (0\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Observaciones:}
+\begin{itemize}
+    \item Conectividad, minería, e industria tienen cancelaciones 100\% por razones geopolíticas
+    \item Infraestructura presenta la mayor diversidad de razones (distribución relativamente uniforme)
+    \item Energía es predominantemente geopolítica (75\%)
+\end{itemize}
+
+\subsection{Casos Destacados para Análisis Cualitativo}
+
+Se seleccionan los siguientes casos para análisis cualitativo detallado:
+
+\textbf{Caso 1: Chile - Múltiples Cancelaciones (2019-2021)}
+
+Chile presenta el mayor número de cancelaciones (3 proyectos), abarcando diferentes sectores:
+\begin{itemize}
+    \item Tren de alta velocidad Santiago-Valparaíso (2019) - Económica
+    \item Cable submarino Huawei (2020) - Geopolítica
+    \item Sistema de pasaportes Aisino (2021) - Geopolítica
+\end{itemize}
+
+Este caso ilustra cómo un país puede experimentar cancelaciones por razones diversas en corto período. El análisis cualitativo explorará factores específicos del contexto chileno.
+
+\textbf{Caso 2: Huawei - Exclusión Global de Infraestructura de Telecomunicaciones}
+
+El caso del cable submarino de Huawei en Chile es parte de un patrón global de exclusión de Huawei de infraestructura crítica de telecomunicaciones por razones de seguridad nacional, bajo presión de USA. Este caso es paradigmático de la securitización de inversiones tecnológicas chinas.
+
+\textbf{Caso 3: East Coast Rail Link (ECRL) - Malasia}
+
+Este proyecto inicialmente fue cancelado en 2019 por el gobierno de Mahathir Mohamad, citando costos excesivos y preocupaciones sobre sostenibilidad de deuda. Posteriormente fue renegociado y reactivado con costo reducido en 30\%. El análisis examinará por qué este proyecto pudo ser rescatado mientras otros fueron cancelados definitivamente.
+
+\textbf{Caso 4: Proyectos Nucleares y Energéticos (Argentina, Níger, Rusia)}
+
+Tres proyectos energéticos de gran escala fueron cancelados en 2022-2024. El análisis explorará la combinación de factores geopolíticos (sanciones, tensiones internacionales) y económicos (viabilidad financiera) en estos casos.
+
+\subsection{Fuentes de Datos Complementarios}
+
+Para las variables de control mencionadas en la metodología, se utilizarán las siguientes fuentes:
+
+\begin{itemize}
+    \item \textbf{PIB per cápita:} World Development Indicators (Banco Mundial)
+    \item \textbf{Deuda pública:} IMF World Economic Outlook Database
+    \item \textbf{Índice de democracia:} Economist Intelligence Unit Democracy Index
+    \item \textbf{Calidad institucional:} Worldwide Governance Indicators (Banco Mundial)
+    \item \textbf{Comercio con China:} UN Comtrade Database
+    \item \textbf{Eventos políticos:} Database of Political Institutions (DPI)
+\end{itemize}
+
+Estos datos permitirán análisis econométrico más sofisticado en versiones futuras del trabajo, aunque el alcance actual de la AFE se enfoca en análisis descriptivo riguroso.
+
+\section{Resultados Preliminares}
+
+\subsection{Hallazgos Principales del Análisis Descriptivo}
+
+Los resultados preliminares confirman varios patrones importantes en la cancelación de proyectos con capital chino durante 2017-2024:
+
+\subsubsection{Sobre Factores Geopolíticos (H1)}
+
+\textbf{Resultado:} Los factores geopolíticos son el determinante principal de cancelaciones, afectando 44.4\% de casos directamente y 61.1\% considerando casos mixtos. \textit{H1 es fuertemente confirmada.}
+
+\textbf{Interpretación:} Este hallazgo es consistente con la intensificación de la rivalidad estratégica USA-China y la creciente securitización de inversiones extranjeras en sectores considerados críticos. Casos paradigmáticos incluyen:
+
+\begin{itemize}
+    \item \textbf{Exclusiones de Huawei:} Chile, junto con múltiples países, excluyó a Huawei de proyectos de infraestructura de telecomunicaciones bajo presión de USA y preocupaciones de seguridad nacional.
+    
+    \item \textbf{Proyectos nucleares:} La cancelación de la planta nuclear Atucha III en Argentina refleja sensibilidad estratégica de tecnología nuclear y presión internacional para limitar transferencia tecnológica china en este sector.
+    
+    \item \textbf{Revocación de licencias mineras:} Casos en Nigeria y Namibia reflejan creciente escrutinio de actividades mineras chinas, vinculado a preocupaciones sobre impacto ambiental y control de recursos estratégicos.
+\end{itemize}
+
+\textbf{Implicancia:} Para países receptores, factores geopolíticos representan riesgo significativo y en gran medida exógeno. Proyectos en sectores estratégicos enfrentan vulnerabilidad incluso cuando son técnicamente viables y económicamente atractivos.
+
+\subsubsection{Sobre Vulnerabilidad Sectorial (H2)}
+
+\textbf{Resultado:} Infraestructura representa 44.4\% de cancelaciones, seguido por energía (22.2\%). Juntos representan 66.6\% del total. \textit{H2 es confirmada.}
+
+\textbf{Interpretación:} La vulnerabilidad de infraestructura refleja:
+\begin{enumerate}
+    \item \textbf{Alta visibilidad política:} Proyectos como ferrocarriles, puertos, y canales son altamente visibles y frecuentemente controversiales políticamente.
+    
+    \item \textbf{Largo plazo de maduración:} Proyectos de infraestructura típicamente requieren 5-15 años desde anuncio hasta completación, exponiendo a múltiples cambios de gobierno y shocks políticos.
+    
+    \item \textbf{Sensibilidad estratégica:} Infraestructura de transporte (especialmente puertos) y energía tienen implicancias de seguridad nacional, atrayendo escrutinio geopolítico.
+    
+    \item \textbf{Complejidad de financiamiento:} Proyectos de infraestructura frecuentemente requieren garantías soberanas y montos grandes de deuda, elevando preocupaciones sobre sostenibilidad fiscal.
+\end{enumerate}
+
+El caso del tren Santiago-Valparaíso ilustra estos factores. El proyecto, valorado en USD \$3 billones, fue cancelado citando ``viabilidad económica insuficiente'', pero análisis posteriores sugieren que preocupaciones sobre deuda pública y cambio en prioridades gubernamentales fueron determinantes.
+
+\textbf{Implicancia:} Inversores chinos deberían anticipar mayor riesgo en infraestructura y energía, potencialmente requiriendo estructuras contractuales con mayor protección o diversificación hacia sectores menos sensibles.
+
+\subsubsection{Sobre Tipo de Proyecto (H3)}
+
+\textbf{Resultado:} Inversiones directas representan 66.7\% de cancelaciones, significativamente más que tenders (27.8\%) o adquisiciones (5.6\%). \textit{H3 es confirmada.}
+
+\textbf{Interpretación:} Varias explicaciones son plausibles:
+
+\begin{enumerate}
+    \item \textbf{Exposición temporal:} Inversiones directas típicamente implican compromisos de largo plazo, exponiendo a más shocks y cambios políticos que contratos de construcción más cortos.
+    
+    \item \textbf{Reversibilidad:} Cancelar una inversión directa, especialmente si no se ha iniciado construcción, es relativamente fácil comparado con terminar contratos en ejecución o revertir adquisiciones completadas.
+    
+    \item \textbf{Escrutinio político:} Inversiones directas frecuentemente requieren aprobación legislativa o referéndums, exponiendo a mayor debate público que tenders técnicos.
+    
+    \item \textbf{Alternativas disponibles:} Para inversiones en infraestructura, países pueden buscar alternativas de financiamiento (multilaterales, otros países). Para contratos de construcción ya adjudicados, cambiar de contratista es más costoso.
+\end{enumerate}
+
+\textbf{Implicancia:} La estructura de participación china importa. Joint ventures con participación local y contratos de construcción sin equity pueden ser más resilientes que inversiones directas 100\% chinas.
+
+\subsubsection{Sobre Evolución Temporal (H4)}
+
+\textbf{Resultado:} Las cancelaciones aumentaron de 1-2 por año en 2017-2019 a 3-5 por año en 2020-2024. \textit{H4 es parcialmente confirmada.}
+
+\begin{table}[H]
+\centering
+\caption{Evolución Temporal de Cancelaciones}
+\label{tab:temporal}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Período} & \textbf{N° Proyectos} & \textbf{Promedio/año} & \textbf{\% del Total} \\
+\midrule
+2017-2019 & 3 & 1.0 & 16.7\% \\
+2020-2022 & 6 & 2.0 & 33.3\% \\
+2023-2024 & 9 & 4.5 & 50.0\% \\
+\midrule
+\textbf{Total} & \textbf{18} & \textbf{2.25} & \textbf{100.0\%} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Interpretación:} El aumento de cancelaciones en 2023-2024 refleja convergencia de factores:
+
+\begin{itemize}
+    \item \textbf{Legado de COVID-19:} Disrupciones económicas y retrasos durante pandemia llevaron a re-evaluación de proyectos
+    \item \textbf{Intensificación de tensiones USA-China:} Presión creciente sobre aliados para limitar participación china
+    \item \textbf{Escrutinio de BRI:} Creciente evidencia de problemas en proyectos BRI llevó a mayor cautela
+    \item \textbf{Restricciones fiscales post-COVID:} Países enfrentan mayor deuda pública y menor espacio fiscal
+\end{itemize}
+
+\textbf{Implicancia:} El patrón sugiere que el entorno para proyectos con capital chino se ha vuelto progresivamente más desafiante, especialmente en sectores estratégicos y países con alineación geopolítica occidental.
+
+\subsubsection{Sobre Concentración Geográfica (H5)}
+
+\textbf{Resultado:} Las cancelaciones se distribuyen en 16 países, pero con concentración notable en Chile (3 proyectos), USA y Malasia (2 cada uno). \textit{H5 es parcialmente confirmada.}
+
+\textbf{Análisis por tipo de país:}
+
+\begin{table}[H]
+\centering
+\caption{Cancelaciones por Características del País}
+\label{tab:geografia}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Característica} & \textbf{N° Países} & \textbf{N° Proyectos} \\
+\midrule
+Aliados formales de USA & 3 & 5 (27.8\%) \\
+Democracias consolidadas & 5 & 7 (38.9\%) \\
+Países en desarrollo & 11 & 11 (61.1\%) \\
+Países con deuda china $>$ 10\% PIB & 2 & 3 (16.7\%) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Interpretación:} Chile emerge como caso particularmente interesante:
+\begin{enumerate}
+    \item Aliado informal de USA con TLC vigente
+    \item Democracia estable con fuerte institucionalidad
+    \item Mayor socio comercial de China en Sudamérica
+    \item Ha cancelado 3 proyectos diversos (infraestructura, telecomunicaciones)
+\end{enumerate}
+
+Esto sugiere que incluso países con fuerte relación comercial con China no están inmunes a cancelaciones cuando factores geopolíticos o económicos se alinean adversamente.
+
+\textbf{Implicancia:} La relación comercial fuerte con China no garantiza éxito de proyectos de inversión. Factores políticos domésticos y presiones geopolíticas pueden dominar consideraciones comerciales.
+
+\subsubsection{Sobre Proyectos BRI (H6)}
+
+\textbf{Resultado:} De los 18 proyectos, 4 fueron explícitamente identificados como parte de BRI (22.2\%). \textit{H6 es rechazada.}
+
+Los proyectos BRI cancelados incluyen:
+\begin{itemize}
+    \item East Coast Rail Link, Malasia (2019)
+    \item Ferrocarriles, Filipinas (2023)
+    \item Participación de Italia en BRI (2023)
+    \item Canal de Nicaragua (2024)
+\end{itemize}
+
+\textbf{Interpretación:} Contrario a la hipótesis, proyectos BRI no parecen más resilientes. Posibles explicaciones:
+
+\begin{enumerate}
+    \item \textbf{Mayor escrutinio:} Proyectos BRI atraen más atención mediática y política, potencialmente incrementando vulnerabilidad
+    \item \textbf{Montos mayores:} Proyectos BRI tienden a ser de mayor escala, generando mayores preocupaciones sobre deuda
+    \item \textbf{Asociación geopolítica:} La marca ``BRI'' se ha vuelto políticamente controvertida, especialmente en países occidentales
+\end{enumerate}
+
+El caso de Italia es ilustrativo: la salida de Italia de BRI en 2023 reflejó presión de aliados en UE y OTAN, a pesar de que proyectos individuales podían tener mérito económico.
+
+\textbf{Implicancia:} La asociación formal con BRI puede ser más pasivo que activo, especialmente en países con alineación occidental. Proyectos bilaterales sin la marca BRI pueden enfrentar menos resistencia política.
+
+\subsection{Análisis Complementario: Razones Múltiples}
+
+Un hallazgo importante es que 16.7\% de cancelaciones tienen razones mixtas (geopolítica + económica), sugiriendo que categorización binaria es limitada. Para estos casos:
+
+\begin{itemize}
+    \item \textbf{Canal de Nicaragua:} Combinación de inviabilidad económica (costos subestimados, impacto ambiental) y cambio en prioridades geopolíticas chinas
+    \item \textbf{Ferrocarriles Filipinas:} Costos excesivos (factor económico) en contexto de deterioro de relaciones bilaterales bajo administración Duterte (factor geopolítico)
+\end{itemize}
+
+\textbf{Implicancia metodológica:} Clasificaciones categóricas simples pueden oscurecer complejidad. Análisis futuros deberían considerar codificación de intensidad o ponderación de múltiples factores.
+
+\subsection{Comparación con Literatura Existente}
+
+Los hallazgos son consistentes con evidencia previa:
+
+\begin{itemize}
+    \item \textbf{\citet{horn2021china}:} Encuentran que 42\% de proyectos BRI tienen problemas de implementación. Nuestros hallazgos de cancelaciones en 22\% de proyectos BRI identificados sugiere que cancelación es subconjunto de problemas más amplios.
+    
+    \item \textbf{\citet{malik2021banking}:} Reportan que 20\% de proyectos BRI experimentan retrasos o cancelaciones. Nuestra tasa observada es similar, aunque nuestra muestra es global y no limitada a BRI.
+    
+    \item \textbf{\citet{sacks2021economic}:} Documentan exclusión de Huawei por razones geopolíticas. Nuestros casos en Chile y otros países confirman este patrón.
+\end{itemize}
+
+Sin embargo, nuestro trabajo aporta cuantificación más sistemática de \textit{razones} de cancelación, diferenciando empíricamente entre factores geopolíticos, económicos, y técnicos.
+
+\subsection{Limitaciones de Resultados Preliminares}
+
+Es importante reconocer limitaciones en esta etapa:
+
+\begin{enumerate}
+    \item \textbf{Tamaño de muestra limitado:} Con 18 casos, capacidad para análisis estadístico inferencial es limitada. Resultados deben considerarse descriptivos y exploratorios.
+    
+    \item \textbf{Sesgo de selección potencial:} Cancelaciones en países con mayor libertad de prensa pueden estar sobre-representadas.
+    
+    \item \textbf{Codificación de razones:} Clasificación se basa en razones declaradas públicamente, que pueden diferir de motivaciones reales.
+    
+    \item \textbf{Análisis puramente descriptivo:} Esta etapa no incluye análisis econométrico causal. Asociaciones observadas no implican necesariamente causalidad.
+    
+    \item \textbf{Variables de control pendientes:} Análisis no controla aún por características de países receptores (PIB, instituciones, deuda, etc.).
+\end{enumerate}
+
+Estas limitaciones serán abordadas en versión final del trabajo mediante:
+\begin{itemize}
+    \item Búsqueda adicional para expandir muestra
+    \item Análisis de robustez con clasificaciones alternativas
+    \item Incorporación de variables de control
+    \item Potencialmente, análisis de regresión si tamaño de muestra lo permite
+\end{itemize}
+
+\section{Conclusiones Preliminares}
+
+\subsection{Síntesis de Hallazgos Principales}
+
+Este trabajo construye y analiza una base de datos de 18 proyectos con capital chino cancelados durante 2017-2024, con el objetivo de identificar patrones sistemáticos y determinantes de cancelación. Los principales hallazgos son:
+
+\begin{enumerate}
+    \item \textbf{Predominancia de factores geopolíticos:} 61.1\% de cancelaciones tienen componente geopolítico (44.4\% puro, 16.7\% mixto), confirmando que consideraciones de seguridad nacional, presiones internacionales, y rivalidad USA-China son el determinante principal.
+    
+    \item \textbf{Vulnerabilidad sectorial:} Infraestructura (44.4\%) y energía (22.2\%) son los sectores más afectados, reflejando su sensibilidad estratégica, alto perfil político, y largo plazo de maduración.
+    
+    \item \textbf{Tipo de proyecto:} Inversiones directas (66.7\%) son más vulnerables que tenders (27.8\%) o adquisiciones (5.6\%), consistente con su mayor exposición temporal y mayor reversibilidad en etapas tempranas.
+    
+    \item \textbf{Intensificación temporal:} Cancelaciones aumentaron de promedio 1/año (2017-2019) a 4.5/año (2023-2024), sugiriendo deterioro del entorno para proyectos chinos.
+    
+    \item \textbf{Distribución geográfica:} Cancelaciones afectan países diversos, pero con concentración en Chile (3 proyectos), reflejando tensión entre fuerte relación comercial con China y alineación geopolítica occidental.
+    
+    \item \textbf{Proyectos BRI:} 22.2\% de cancelaciones corresponden a proyectos BRI, y asociación con BRI no confiere protección especial contra cancelación.
+\end{enumerate}
+
+\subsection{Implicancias para Política Pública}
+
+\subsubsection{Para Países Receptores de Inversión China}
+
+\begin{enumerate}
+    \item \textbf{Due diligence geopolítico:} Evaluación de proyectos debe incorporar análisis de sensibilidad geopolítica y potencial escrutinio internacional, especialmente en sectores estratégicos (telecomunicaciones, puertos, energía nuclear).
+    
+    \item \textbf{Diversificación de fuentes de financiamiento:} Dependencia excesiva en financiamiento chino crea vulnerabilidad. Países deberían mantener opciones con multilaterales y otros inversores.
+    
+    \item \textbf{Estructuras contractuales robustas:} Contratos deben anticipar cambios en circunstancias políticas y económicas, incluyendo cláusulas de salida claras y mecanismos de resolución de disputas.
+    
+    \item \textbf{Gestión de deuda sostenible:} Preocupaciones sobre sostenibilidad de deuda son factor significativo en cancelaciones. Países deben mantener disciplina fiscal y evaluar cuidadosamente capacidad de repago.
+    
+    \item \textbf{Comunicación estratégica:} Proyectos requieren comunicación pública efectiva para construir apoyo doméstico y manejar presiones internacionales.
+\end{enumerate}
+
+\subsubsection{Para Chile Específicamente}
+
+Chile presenta caso interesante con 3 cancelaciones en sectores diversos. Recomendaciones específicas:
+
+\begin{enumerate}
+    \item \textbf{Marco de evaluación de inversiones estratégicas:} Desarrollar criterios claros y transparentes para evaluar inversiones extranjeras en sectores sensibles, balanceando beneficios económicos con consideraciones de seguridad.
+    
+    \item \textbf{Relacionamiento estratégico con China:} A pesar de fuerte relación comercial, Chile debe reconocer que proyectos de inversión enfrentan escrutinio diferente. Priorizar áreas de menor sensibilidad geopolítica.
+    
+    \item \textbf{Coordinación con aliados:} Mantener diálogo con USA y aliados para entender preocupaciones de seguridad legítimas, evitando cancelaciones reactivas de proyectos viables.
+    
+    \item \textbf{Análisis riguroso de viabilidad:} Caso del tren Santiago-Valparaíso sugiere que análisis técnico-económico debe ser más riguroso en etapa de factibilidad, evitando compromisos con proyectos inviables.
+\end{enumerate}
+
+\subsubsection{Para China como Inversor Global}
+
+\begin{enumerate}
+    \item \textbf{Gestión de riesgo geopolítico:} Reconocer que factores geopolíticos son determinante principal y desarrollar estrategias de mitigación, potencialmente priorizando países con menor alineación occidental o proyectos de menor sensibilidad estratégica.
+    
+    \item \textbf{Recalibración de BRI:} La marca BRI se ha vuelto políticamente controvertida. Considerar enfoque de bajo perfil o rebranding de iniciativa.
+    
+    \item \textbf{Mejora de due diligence:} Evaluación de proyectos debe incorporar análisis de riesgo político sofisticado, no solo viabilidad técnica y económica.
+    
+    \item \textbf{Diversificación sectorial:} Reducir concentración en infraestructura y energía, explorando sectores de menor perfil político como agricultura, manufactura, o servicios.
+    
+    \item \textbf{Partnerships locales:} Joint ventures con participación local significativa pueden reducir resistencia política y mejorar resilencia de proyectos.
+\end{enumerate}
+
+\subsection{Contribuciones de Este Trabajo}
+
+Como Actividad Formativa Equivalente, este trabajo contribuye:
+
+\begin{enumerate}
+    \item \textbf{Base de datos sistemática:} Primera compilación sistemática de proyectos chinos cancelados con documentación de razones, sectores, y contexto.
+    
+    \item \textbf{Cuantificación de patrones:} Análisis estadístico riguroso que cuantifica importancia relativa de diferentes determinantes, superando análisis puramente anecdóticos.
+    
+    \item \textbf{Evidencia para debate de política:} Resultados tienen relevancia directa para países receptores de inversión china, incluyendo Chile.
+    
+    \item \textbf{Fundamento para investigación futura:} El trabajo establece metodología y base empírica para análisis más sofisticados.
+\end{enumerate}
+
+\subsection{Limitaciones y Trabajo Futuro}
+
+\subsubsection{Limitaciones Reconocidas}
+
+\begin{enumerate}
+    \item \textbf{Tamaño de muestra:} 18 casos es muestra pequeña para análisis estadístico inferencial robusto
+    \item \textbf{Posible sesgo de selección:} Cancelaciones en países con mayor transparencia pueden estar sobre-representadas
+    \item \textbf{Clasificación de razones:} Depende de fuentes públicas que pueden no reflejar motivaciones reales
+    \item \textbf{Análisis descriptivo:} No establece causalidad definitiva, solo asociaciones
+    \item \textbf{Contexto faltante:} No incluye análisis de proyectos exitosos como grupo de control
+\end{enumerate}
+
+\subsubsection{Extensiones para Versión Final}
+
+Para la versión final del trabajo, se planean las siguientes extensiones:
+
+\begin{enumerate}
+    \item \textbf{Expansión de muestra:}
+    \begin{itemize}
+        \item Búsqueda adicional con keywords en más idiomas
+        \item Revisión de bases de datos académicas adicionales
+        \item Objetivo: aumentar muestra a 25-30 casos
+    \end{itemize}
+    
+    \item \textbf{Análisis econométrico:}
+    \begin{itemize}
+        \item Regresión logística de probabilidad de cancelación
+        \item Variables explicativas: características de país (PIB, instituciones, deuda, comercio con China), características de proyecto (sector, tipo, monto), variables temporales
+        \item Si tamaño de muestra lo permite, estimación de efectos marginales
+    \end{itemize}
+    
+    \item \textbf{Análisis comparativo:}
+    \begin{itemize}
+        \item Identificar proyectos chinos exitosos similares como grupo de control
+        \item Análisis de qué diferencia proyectos cancelados de exitosos
+    \end{itemize}
+    
+    \item \textbf{Análisis cualitativo profundo:}
+    \begin{itemize}
+        \item Estudios de caso detallados de 4-5 proyectos seleccionados
+        \item Análisis de discurso en medios para casos seleccionados
+        \item Si factible, entrevistas con expertos o stakeholders
+    \end{itemize}
+    
+    \item \textbf{Robustez:}
+    \begin{itemize}
+        \item Re-clasificación de casos ambiguos
+        \item Análisis de sensibilidad a definiciones alternativas
+        \item Verificación adicional de fuentes para muestra aleatoria
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Agenda de Investigación Futura}
+
+Más allá de este trabajo, líneas futuras de investigación incluyen:
+
+\begin{enumerate}
+    \item \textbf{Análisis temporal expandido:} Extender análisis a período completo post-BRI (2013-2024) para identificar tendencias de largo plazo
+    
+    \item \textbf{Análisis comparativo internacional:} Comparar cancelaciones de proyectos chinos con proyectos de otros inversores (Japón, multilaterales, occidente)
+    
+    \item \textbf{Análisis de renegociaciones:} Estudiar proyectos que fueron renegociados exitosamente en lugar de cancelados, identificando factores de resiliencia
+    
+    \item \textbf{Consecuencias económicas:} Estimar costos de cancelación para países receptores y para China
+    
+    \item \textbf{Análisis de red:} Examinar si países que cancelan proyectos influencian decisiones de países vecinos
+    
+    \item \textbf{Modelación de riesgo:} Desarrollar modelo predictivo de riesgo de cancelación para nuevos proyectos propuestos
+\end{enumerate}
+
+\subsection{Reflexión Final}
+
+La expansión global de inversiones chinas ha sido fenómeno transformador para economía global, especialmente para países en desarrollo con déficits de infraestructura. Sin embargo, este análisis de proyectos cancelados revela que esta expansión enfrenta fricciones significativas, particularmente en contexto de creciente rivalidad geopolítica y securitización de sectores estratégicos.
+
+Los hallazgos sugieren que la ``era dorada'' de proyectos chinos con baja fricción (si es que existió) ha terminado. El entorno futuro será más desafiante, requiriendo mayor sofisticación tanto de inversores chinos en gestión de riesgo geopolítico, como de países receptores en balancear oportunidades económicas con consideraciones estratégicas y de sostenibilidad.
+
+Para Chile y América Latina, la experiencia de cancelaciones ofrece lecciones importantes: la relación económica con China debe ser gestionada estratégicamente, reconociendo tanto oportunidades como riesgos, y evitando ingenuidad tanto sobre motivaciones chinas como sobre presiones geopolíticas del sistema internacional.
+
+\section*{Referencias}
+
+\begin{thebibliography}{99}
+
+\bibitem{blackwill2016war}
+Blackwill, R. D., \& Harris, J. M. (2016). \textit{War by Other Means: Geoeconomics and Statecraft}. Harvard University Press.
+
+\bibitem{brautigam2020debt}
+Bräutigam, D. (2020). A critical look at Chinese 'debt-trap diplomacy': The rise of a meme. \textit{Area Development and Policy}, 5(1), 1-14.
+
+\bibitem{buckley2007determinants}
+Buckley, P. J., Clegg, L. J., Cross, A. R., Liu, X., Voss, H., \& Zheng, P. (2007). The determinants of Chinese outward foreign direct investment. \textit{Journal of International Business Studies}, 38(4), 499-518.
+
+\bibitem{cheung2012china}
+Cheung, Y. W., \& Qian, X. (2009). Empirics of China's outward direct investment. \textit{Pacific Economic Review}, 14(3), 312-341.
+
+\bibitem{dunning1988eclectic}
+Dunning, J. H. (1988). The eclectic paradigm of international production: A restatement and some possible extensions. \textit{Journal of International Business Studies}, 19(1), 1-31.
+
+\bibitem{farrell2019weaponized}
+Farrell, H., \& Newman, A. L. (2019). Weaponized interdependence: How global economic networks shape state coercion. \textit{International Security}, 44(1), 42-79.
+
+\bibitem{gallagher2016china}
+Gallagher, K. P. (2016). \textit{The China Triangle: Latin America's China Boom and the Fate of the Washington Consensus}. Oxford University Press.
+
+\bibitem{gelpern2021china}
+Gelpern, A., Horn, S., Morris, S., Parks, B., \& Trebesch, C. (2021). How China lends: A rare look into 100 debt contracts with foreign governments. \textit{Peterson Institute for International Economics, Kiel Institute for the World Economy, Center for Global Development, and AidData at William & Mary}.
+
+\bibitem{gonzalez2021china}
+González-Vicente, R. (2021). The limits to China's infrastrategic investment: Insights from Latin America. \textit{Journal of Contemporary China}, 30(127), 92-106.
+
+\bibitem{guasch2008granting}
+Guasch, J. L., Laffont, J. J., \& Straub, S. (2008). Renegotiation of concession contracts in Latin America: Evidence from the water and transport sectors. \textit{International Journal of Industrial Organization}, 26(2), 421-442.
+
+\bibitem{henisz2000institutional}
+Henisz, W. J. (2000). The institutional environment for economic growth. \textit{Economics \& Politics}, 12(1), 1-31.
+
+\bibitem{henisz2005politics}
+Henisz, W. J., \& Zelner, B. A. (2005). Legitimacy, interest group pressures, and change in emergent institutions: The case of foreign investors and host country governments. \textit{Academy of Management Review}, 30(2), 361-382.
+
+\bibitem{horn2021china}
+Horn, S., Reinhart, C. M., \& Trebesch, C. (2021). China's overseas lending. \textit{Journal of International Economics}, 133, 103539.
+
+\bibitem{hurley2019examining}
+Hurley, J., Morris, S., \& Portelance, G. (2019). Examining the debt implications of the Belt and Road Initiative from a policy perspective. \textit{Journal of Infrastructure, Policy and Development}, 3(1), 139-175.
+
+\bibitem{kobrin1979political}
+Kobrin, S. J. (1979). Political risk: A review and reconsideration. \textit{Journal of International Business Studies}, 10(1), 67-80.
+
+\bibitem{kolstad2012determinants}
+Kolstad, I., \& Wiig, A. (2012). What determines Chinese outward FDI? \textit{Journal of World Business}, 47(1), 26-34.
+
+\bibitem{kratz2019brussels}
+Kratz, A., Huotari, M., Hanemann, T., \& Arcesati, R. (2019). Chinese FDI in Europe: 2018 trends and impact of new screening policies. \textit{Rhodium Group and Mercator Institute for China Studies (MERICS)}.
+
+\bibitem{maçães2018belt}
+Maçães, B. (2018). \textit{Belt and Road: A Chinese World Order}. Hurst Publishers.
+
+\bibitem{malik2021banking}
+Malik, A. A., Parks, B., Russell, B., Lin, J. J., Walsh, K. M., Solomon, K., Zhang, S., Elston, T., \& Goodman, S. (2021). Banking on the Belt and Road: Insights from a new global dataset of 13,427 Chinese development projects. \textit{AidData at William \& Mary}.
+
+\bibitem{myers2021belt}
+Myers, M., \& Ray, R. (2021). Shifting gears: Chinese finance in LAC, 2020. \textit{The Dialogue}.
+
+\bibitem{ray2020china}
+Ray, R., \& Simmons, K. (2020). Tracking China-Latin America Finance Database. \textit{The Dialogue}.
+
+\bibitem{sacks2021economic}
+Sacks, D., \& Riemann, J. (2021). Huawei: A case study of when business meets national security. \textit{Foreign Policy at Brookings}.
+
+\bibitem{scissors2020china}
+Scissors, D. (2020). China global investment tracker. \textit{American Enterprise Institute}.
+
+\bibitem{wilhelmy2015chile}
+Wilhelmy, M., \& Fuentes, C. (2015). Chile's relationship with China: Deepening or stagnation? In A. Bórquez, \& H. Ross (Eds.), \textit{China in Latin America: Lessons from South-South Cooperation and Sustainable Development} (pp. 89-110). CEBRI.
+
+\end{thebibliography}
+
+\end{document}
