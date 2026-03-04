@@ -190,8 +190,57 @@
 - Indonesia: artículo pro-BRI ("not a debt trap")
 - Pakistán Gwadar/SSBN: disputa militar, no infraestructura BRI
 
+### Script 23a — GKG Global SOE Mining
+- Input: 626,775 artículos GKG (2017-2024), procesados año por año
+- **63,377 señales globales** (SOE + país receptor) en 3,803 clusters (país×SOE×año)
+- **1,279 clusters con ≥5 artículos** — señales fuertes
+- **Filtro Huawei**: 15,946 artículos Huawei-only filtrados, 9,154 rescatados por tema cancel/ban
+- **6,910 señales de deuda** (top: Sri Lanka, Zambia, Kenya, Pakistan)
+- **9,103 señales ambientales** (top: Russia, UK, Australia, Poland)
+- **10,513 URLs** de regiones sub-representadas para exploración
+- **29/52 casos conocidos corroborados** en GKG (top: Australia BRI 1,575 artículos)
+- Output: `data/samples/gkg_global/` (6 archivos CSV + reporte MD)
+
+### Script 23b — GKG Theme-Based Case Discovery
+- **132,925 artículos** con nombres de proyecto BRI (CPEC: 10,396 menciones, Gwadar: 2,360, Hambantota: 1,477)
+- **1,185 citas** con evidencia de cancelación + China
+- Gap analysis: 9/16 casos no-detectados encontrados en GKG (Ecuador Coca Codo, Philippines, Kazakhstan, etc.)
+- Output: `data/samples/gkg_global/` (3 archivos CSV + reporte MD)
+
+### Script 24 — Tier 2 Global Signal Verification
+- Verificación web de 202 señales Tier 2 (score 3.0-4.9)
+- **16 CONFIRMED + 93 LIKELY** (54% signal rate, mejor que LATAM)
+- **64 URLs muertas** (32% URL rot)
+- Nuevas señales por región: South Asia (31), SE Asia (18), Africa (11), Oceania (11), Middle East (10)
+- Hallazgos notables: Italia BRI exit (VOA), Pakistan Dasu dam + Neelum-Jhelum (Gezhouba abandona), Sri Lanka sanciones EEUU a CCCC
+- Output: `data/samples/final/tier2_verified.csv` (202 rows) + `tier2_new_cases.csv`
+
+### Script 25 — Case Enrichment + Mechanism Classification
+- **68 casos** con metadata enriquecida (52 existentes + 16 nuevos CONFIRMED)
+- Taxonomía de 8 macro-mecanismos: security (24), economic (15), political (12), social (9), legal (5)
+- 12 sectores clasificados: Transport_Port (17), Transport_Rail (11), Telecom (7), Energy (13)
+- 31/68 casos con valor conocido, total $170,553M
+- 29/68 con corroboración GKG (media 214 artículos)
+- Output: `data/samples/final/bri_cases_enriched.csv` + case studies top 20
+
+### Script 26 — Regional Deep Dives
+- 130 URLs GKG verificadas en regiones sub-representadas
+- **27 nuevas señales**: Oceania (11), Africa (10), Middle East (4), Central Asia (2)
+- Hallazgos genuinos: Djibouti (China Merchants port dispute), Turkmenistan (CNPC gas contamination), Fiji (China Railway court fine), Mozambique (CNPC political unrest)
+- GKG detection rate: LATAM 86%, SE Asia 75%, Oceania 67%, Africa 60%, South Asia 45%
+- Limitación confirmada: Central Asia (ruso) y Pacific Islands (cobertura mínima)
+
+### Script 27 — Final Consolidated Dataset v2
+- **70 casos verificados** en **9 regiones** y **30+ países**
+- Valor total afectado: **$123,353M**
+- Mecanismos: security (23), economic (15), political (12), social (9), legal (5)
+- Sectores: Transport (33), Energy (14), Telecom (7), Mining (3), Manufacturing (2)
+- Pipeline detection rate: 54/70 (77%)
+- 6 thesis tables generadas en `data/samples/final/thesis_tables/`
+- Output: `data/samples/final/bri_cancellations_FINAL_v2.csv` (70 rows)
+
 ### Pending
-- Verificar señales Tier 2 adicionales (202 candidatos)
-- Ampliar dataset verificado con señales globales de proyectos Huawei/5G
 - Fase 2 futura: GDELT v1 para pre-2015
 - Cruce con AidData TUFF 3.0 / Baumgartner & Zeitz (2022) para validación
+- Verificación manual de señales LIKELY del Tier 2 (93 candidatos adicionales)
+- Completar valores faltantes para 42/70 casos sin value_usd

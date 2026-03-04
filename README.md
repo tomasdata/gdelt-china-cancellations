@@ -64,6 +64,14 @@ Cada subcarpeta de `data/samples/` contiene un archivo `ANALYSIS.md` con anális
 | `18_final_dataset.py` | Dataset estructurado final |
 | `19_deep_candidate_review.py` | Web scraping y validación de 60 candidatos |
 | `20_robust_synthesis.py` | Auditoría de robustez → 12 señales alta confianza |
+| `21_global_signals.py` | Señales globales BRI → 1,214 en 98 países |
+| `22_consolidated_dataset.py` | Dataset consolidado manual → 52 casos base |
+| `23a_gkg_global_soe.py` | GKG mining global SOE → 63,377 señales |
+| `23b_gkg_theme_discovery.py` | GKG temas + nombres de proyecto + citas |
+| `24_tier2_verification.py` | Verificación web 202 señales Tier 2 |
+| `25_case_enrichment.py` | Enriquecimiento + taxonomía mecanismos |
+| `26_regional_deep_dives.py` | Deep dives regionales sub-representadas |
+| `27_final_dataset_v2.py` | Dataset final v2 → 70 casos verificados |
 
 ---
 
@@ -101,18 +109,19 @@ git lfs pull
 
 ## Resultados clave
 
-### LATAM (Scripts 01–20)
-- **801** proyectos candidatos identificados automáticamente (clustering)
-- **309** candidatos cross-validados (Events + GKG, 88% recall)
-- **269** señales curadas en dataset LATAM (Script 18)
-- **9** señales LATAM verificadas manualmente (Chile SQM, Venezuela ×4, Ecuador camarón, Brasil Tamoios, Argentina pork deal, Perú Chancay)
-- **5** mecanismos de cancelación: sanciones EEUU, oposición ambiental, rechazo político, falla de proyecto, renegociación de deuda
+### Dataset Final v2 (Scripts 01–27)
+- **70 casos verificados** de disrupciones BRI en **30+ países** y **9 regiones**
+- **$123,353M** en valor total afectado
+- **8 macro-mecanismos** de cancelación: security (23 casos), economic (15), political (12), social (9), legal (5)
+- **77% de detección** — 54/70 casos encontrados por el pipeline automatizado GDELT
 
-### Global (Script 21)
-- **1,214** señales globales en **98 países** y **12 regiones**
-- **10** proyectos BRI nombrados detectados (CPEC, Gwadar, Hambantota, ECRL, Pokhara, etc.)
-- **18/23** señales Tier 1 verificadas como verdaderas (78% precisión)
-- Casos emblemáticos: Australia cancela BRI (2021), Italia sale de BRI (2023), Pakistán CPEC bajo ataque, Sri Lanka Hambantota, Bangladesh protesta letal, Zambia default
+### LATAM (14 casos)
+- Chile SQM ($4B), Venezuela sanciones EEUU (×4), Ecuador camarón + Coca Codo, Brasil Tamoios, Argentina pork deal, Perú Chancay ($3.6B), Bolivia Uyuni ($2B), México HSR ($3.75B), Costa Rica SORESCO ($1.2B)
+
+### Global (56 casos)
+- **1,214** señales identificadas en **98 países** (Scripts 21-24)
+- **GKG mining**: 626,775 artículos procesados, 63,377 señales SOE, 3,803 clusters (Scripts 23a/b)
+- Casos emblemáticos: Australia cancela BRI (2021), Italia sale de BRI (2023), Pakistán CPEC+Dasu+Gwadar, Sri Lanka Hambantota+Colombo, Malaysia ECRL ($22B), Indonesia HSR ($7.3B), Tanzania Bagamoyo ($10B), Ghana loans ($19B)
 
 ---
 
