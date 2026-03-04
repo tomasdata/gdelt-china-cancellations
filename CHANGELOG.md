@@ -163,8 +163,35 @@
 - **Mecanismo original**: Sanciones secundarias EEUU como driver de cancelación BRI (Venezuela 2018-2020)
 - **Limitación principal**: Recall 40% — el pipeline captura bien sanciones EEUU pero pierde casos de rechazo político directo (Chile SQM score=4.0, Brasil Tamoios score=3.5)
 
+### Script 21 — Análisis global de señales BRI
+- Expande el análisis más allá de LATAM a los 8,492 eventos globales URL-filtered
+- Clasificación por: nombre de proyecto conocido, términos BRI explícitos, indicadores de fricción
+- **1,214 señales globales** con score ≥ 2 en **98 países** y **12 regiones**
+- **51 señales Tier 1** (score ≥ 5), **202 Tier 2** (3-4.9), **961 Tier 3** (2-2.9)
+- **10 proyectos BRI nombrados** detectados: CPEC (50), Gwadar (19), Hambantota (3), Tuzla (3), Port Qasim (3), Colombo Port City (2), Pokhara (1), Diamer-Bhasha (1), Mombasa SGR (1), ECRL (1)
+- Verificación de 23 URLs Tier 1: **18 señales verdaderas (78%)**, 4 falsos positivos, 1 no verificable
+
+### Señales globales verificadas (web scraping)
+- **Pakistán CPEC**: Ataques a trabajadores chinos → pausas en construcción (Dasu Dam, Gwadar). Protestas locales anti-CPEC en Gwadar (2021). Aeropuerto Gwadar demorado 3 veces.
+- **Australia**: Cancelación del acuerdo BRI de Victoria (2021) + China retalia suspendiendo diálogo económico. Ban de Huawei/ZTE de 5G (2018).
+- **Sri Lanka**: Hambantota — stalled talks (2017), caso canónico de debt-trap.
+- **Nepal**: Protestas contra aeropuerto Pokhara (financiado con préstamo chino, elefante blanco).
+- **Zambia**: Llamados a renegociar préstamos chinos (2018). Default soberano 2020.
+- **Italia**: Salida formal de BRI (2023) — primer país G7 en retirarse.
+- **Bangladesh**: Protesta letal contra planta de carbón china en Banshkhali (2017).
+- **Bielorrusia**: Protestas 2020 crean incertidumbre para BRI (Great Stone Industrial Park).
+- **Alemania/Japón**: Bans de Huawei/ZTE de redes 5G (Digital Silk Road).
+- **Nigeria**: Críticas domésticas a préstamos chinos de Buhari.
+- **Rusia**: Invasión de Ucrania (2022) disrumpe corredor norte del BRI.
+
+### Falsos positivos globales identificados
+- Malasia ECRL: artículo sobre *revival* del proyecto (no cancelación)
+- Kenia Mombasa: narrativa desmentida de "seizure" del puerto (forum post)
+- Indonesia: artículo pro-BRI ("not a debt trap")
+- Pakistán Gwadar/SSBN: disputa militar, no infraestructura BRI
+
 ### Pending
-- Revisión más profunda de los 12-15 casos de alta confianza (verificar URLs, contexto)
-- Actualizar dataset con hallazgos adicionales de revisión manual
+- Verificar señales Tier 2 adicionales (202 candidatos)
+- Ampliar dataset verificado con señales globales de proyectos Huawei/5G
 - Fase 2 futura: GDELT v1 para pre-2015
-- Cruce con AidData TUFF 3.0 (cuando sea oportuno)
+- Cruce con AidData TUFF 3.0 / Baumgartner & Zeitz (2022) para validación
