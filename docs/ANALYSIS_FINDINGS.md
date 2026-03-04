@@ -578,3 +578,54 @@
 - `data/samples/final/latam_bri_signals_final.csv` — dataset curado LATAM
 - `data/samples/final/latam_bri_signals_final.md` — narrativa para tesis
 - `data/samples/final/global_bri_signals_final.csv` — señales globales
+
+## Script 19 — Deep Candidate Review
+
+### Metodología
+- Web scraping de URLs de las 269 señales del Script 18
+- Clasificación manual: CONFIRMED / LIKELY / NOISE
+- 60 candidatos revisados en profundidad
+
+### Falsos positivos descubiertos
+- **qz.com Villavicencio**: 5 señales "CONFIRMED" eran el mismo artículo sobre el asesinato de Fernando Villavicencio en Ecuador — mencionaba PetroChina/BRI como contexto lateral
+- Artículo asignado a Ecuador, Colombia, Brasil, México, Venezuela × 2023
+
+### Archivos generados
+- `data/samples/final/candidates_deep_review.csv` — 60 candidatos revisados
+- `data/samples/final/candidates_deep_review.md` — narrativa de revisión
+
+## Script 20 — Auditoría de robustez y síntesis final
+
+### Metodología de re-scoring
+```
+robust_score (0-10) = mech_score + dom_bonus + vol_bonus + tone_bonus
+                    + review_bonus + ev_url_bonus + ev_mech_bonus
+
+HARD DISQUALIFIERS (score = 0):
+  - url_contaminated=True (URL compartida por ≥3 país-año)
+  - domain_score=0 (fuente china inaccesible)
+
+Threshold alta confianza: ≥ 6.0
+```
+
+### Resultados
+- 269 señales → **12 de alta confianza** (96% reducción de ruido)
+- URLs contaminadas: 52 señales eliminadas
+- Fuentes chinas inaccesibles: 79 señales eliminadas (sina.com.cn, eastmoney.com, sohu.com, etc.)
+
+### Distribución alta confianza
+- `us_sanctions`: 11 señales (Cuba, Jamaica, México, Panamá, Venezuela)
+- `confirmed_presence`: 1 señal (Chile 2020 — COVID force majeure)
+
+### Recall vs. casos manuales: 4/10 (40%)
+- Recuperados: Venezuela ×4 (ZTE, CNPC, Unipec, censura internet)
+- No recuperados (score < 6.0): Chile SQM (4.0), Ecuador camarón (1.5), Brasil Tamoios (3.5), Ecuador Yasuní (0.0), Jamaica CHEC (2.0), Perú Chancay (3.0)
+
+### Limitaciones documentadas
+- El scoring penaliza fuentes no-anglófonas y señales con pocas menciones GKG
+- Casos de rechazo político directo (host country) quedan por debajo del threshold
+- Pipeline sesgado hacia sanciones EEUU (mejor cobertura mediática anglófona)
+
+### Archivos generados
+- `data/samples/final/robust_synthesis.csv` — 269 señales con robust_score_final
+- `data/samples/final/robust_synthesis.md` — reporte narrativo para tesis

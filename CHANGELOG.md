@@ -137,9 +137,34 @@
 - Para datos pre-2015 se necesita GDELT v1 (schema diferente, Fase 2 futura)
 - El crecimiento de 289k (2 años) → 374k (8 años) sugiere menor volumen por año en 2015-2016 — normal, los eventos BRI aumentaron con el tiempo
 
-### Pending (actualizado)
-- Esperar script 07 GKG → analizar organizaciones que emergen
-- Cruzar 801 candidatos Events con candidatos GKG (validación cruzada)
-- Pasar pipeline 08→12 sobre datos históricos 2015-2016 (cuando sea oportuno)
-- Comparar 8 señales LATAM identificadas con los 18 del paper de Villalobos
-- Investigar mecanismo Venezuela más profundamente (monto inversión CNPC afectada)
+### Script 19 — Deep Candidate Review (web scraping + validación manual)
+- Input: 269 señales del Script 18
+- Web scraping de URLs para verificar contenido real de cada artículo
+- **60 candidatos revisados** con clasificación: CONFIRMED / LIKELY / NOISE
+- Hallazgo: artículo qz.com sobre asesinato de Villavicencio (Ecuador) clasificado como CONFIRMED en 5 países distintos — falso positivo sistemático
+- Output: `data/samples/final/candidates_deep_review.csv` (60 candidatos)
+- Output: `data/samples/final/candidates_deep_review.md` (narrativa)
+
+### Script 20 — Auditoría de robustez y síntesis final
+- Re-scoring completo de 269 señales con criterios estrictos:
+  - `domain_score`: penaliza fuentes chinas inaccesibles (79 señales eliminadas)
+  - `url_contaminated`: detecta URLs compartidas por ≥3 países (52 señales eliminadas)
+  - `robust_score_final` (escala 0-10): combina mecanismo + dominio + volumen + tono + corroboración
+- **269 → 12 señales de alta confianza** (threshold ≥ 6.0) — reducción de 96% del ruido
+- Mecanismos alta confianza: 11 us_sanctions + 1 confirmed_presence
+- Recall vs. 10 casos manuales conocidos: **4/10 (40%)**
+- Señales genuinas confirmadas: Venezuela (ZTE, CNPC, Unipec, censura internet), Cuba, Chile COVID
+- Output: `data/samples/final/robust_synthesis.csv` (dataset auditado completo)
+- Output: `data/samples/final/robust_synthesis.md` (reporte narrativo para tesis)
+
+### Resultados finales del pipeline completo
+- **Pipeline automatizado**: 20 scripts, ~450k eventos procesados, ~93k artículos GKG
+- **Señales alta confianza LATAM**: 12 (de 269 curadas, de 801 candidatos, de 52k eventos BRI)
+- **Mecanismo original**: Sanciones secundarias EEUU como driver de cancelación BRI (Venezuela 2018-2020)
+- **Limitación principal**: Recall 40% — el pipeline captura bien sanciones EEUU pero pierde casos de rechazo político directo (Chile SQM score=4.0, Brasil Tamoios score=3.5)
+
+### Pending
+- Revisión más profunda de los 12-15 casos de alta confianza (verificar URLs, contexto)
+- Actualizar dataset con hallazgos adicionales de revisión manual
+- Fase 2 futura: GDELT v1 para pre-2015
+- Cruce con AidData TUFF 3.0 (cuando sea oportuno)

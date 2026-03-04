@@ -12,7 +12,7 @@ La tesis parte de una muestra manual de 18 casos documentados y busca expandirla
 
 **Hallazgo principal:** Las sanciones secundarias de EEUU (empresas chinas que se retiran de terceros países bajo presión estadounidense) constituyen un mecanismo de cancelación no sistematizado en la literatura BRI existente.
 
-**Dataset final estimado:** ~60 casos validados (expansión 3× desde los 18 manuales).
+**Dataset final:** 12 señales de alta confianza tras auditoría de robustez (de 269 candidatas curadas, de 801 clusters iniciales). El mecanismo de sanciones secundarias EEUU domina las señales validadas.
 
 ---
 
@@ -62,6 +62,8 @@ Cada subcarpeta de `data/samples/` contiene un archivo `ANALYSIS.md` con anális
 | `16_validation_cross.py` | Cross-validación Events × GKG |
 | `17_gkg_latam_deep.py` | Análisis profundo GKG en LATAM |
 | `18_final_dataset.py` | Dataset estructurado final |
+| `19_deep_candidate_review.py` | Web scraping y validación de 60 candidatos |
+| `20_robust_synthesis.py` | Auditoría de robustez → 12 señales alta confianza |
 
 ---
 
@@ -99,11 +101,13 @@ git lfs pull
 
 ## Resultados clave
 
-- **801** proyectos candidatos identificados automáticamente
-- **309** candidatos cross-validados (Events + GKG)
-- **88%** de recall vs. señales manuales conocidas (7/8 casos recuperados)
-- **~60** casos estimados en el dataset final validado
-- **5** mecanismos de cancelación identificados: sanciones EEUU, oposición ambiental, rechazo político, falla de proyecto, renegociación de deuda
+- **801** proyectos candidatos identificados automáticamente (clustering)
+- **309** candidatos cross-validados (Events + GKG, 88% recall)
+- **269** señales curadas en dataset LATAM (Script 18)
+- **12** señales de alta confianza tras auditoría de robustez (Script 20)
+- **96%** de reducción de ruido entre dataset curado y señales validadas
+- **40%** de recall vs. 10 casos manuales conocidos
+- **5** mecanismos de cancelación: sanciones EEUU, oposición ambiental, rechazo político, falla de proyecto, renegociación de deuda
 
 ---
 
