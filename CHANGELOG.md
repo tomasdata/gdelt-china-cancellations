@@ -239,8 +239,27 @@
 - 6 thesis tables generadas en `data/samples/final/thesis_tables/`
 - Output: `data/samples/final/bri_cancellations_FINAL_v2.csv` (70 rows)
 
+### Script 28 — Exploratory Data Analysis
+- 21 visualizaciones paper-ready (300 DPI) en `data/samples/analysis/`
+- 14 CSVs subyacentes + reporte narrativo `ANALYSIS_REPORT.md`
+- Subcarpetas: temporal, regional, mechanisms, sectors, value, evidence, actors
+- Hallazgos clave: security 33% de mecanismos, pico 2020, transport 76% de disrupciones
+
+### Script 29 — AidData GCDF 3.0 Cross-Validation
+- Descarga y cruce con **AidData** (20,985 proyectos chinos, US$1.34T, 2000-2021)
+- **42/70** de nuestros casos con match fuerte en AidData
+- **5 casos confirmados** como problemáticos en ambos datasets (Chile SQM, Costa Rica SORESCO, Myanmar Myitsone, Indonesia HSR, Montenegro)
+- **627 proyectos problemáticos** en AidData: 92 cancelled ($42B), 45 suspended ($39.2B), 493 financial distress
+- **96 proyectos de infraestructura** cancelados/suspendidos
+- Hallazgo: solo 0.6% de proyectos formalmente cancelados vs 2.3% en financial distress
+- Nuestro pipeline captura disrupciones que AidData no rastrea (5G bans, protestas, sanciones EEUU = no son "development finance")
+- Top gaps: Pakistan (+55), Sri Lanka (+52), Myanmar (+34), Ethiopia (+29), Cameroon (+27)
+- Output: `data/samples/validation/aiddata_*.csv` + reporte
+
 ### Pending
-- Fase 2 futura: GDELT v1 para pre-2015
-- Cruce con AidData TUFF 3.0 / Baumgartner & Zeitz (2022) para validación
-- Verificación manual de señales LIKELY del Tier 2 (93 candidatos adicionales)
-- Completar valores faltantes para 42/70 casos sin value_usd
+- **Script 30**: Buscar TODOS los 627 proyectos AidData en GDELT BigQuery + GKG local (ver TODO.md)
+- **Script 31**: Dataset Final v3 con merge AidData + nuevos casos
+- GDELT v1 para pre-2015
+- IISS China Connects database para validación adicional
+- 93 señales LIKELY del Tier 2 sin verificar
+- 42/70 casos sin value_usd — enriquecer con AidData
